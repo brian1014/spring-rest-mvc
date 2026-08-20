@@ -23,6 +23,9 @@ public class CustomerDTO {
     @JsonProperty("version")
     private Integer version;
 
+    @JsonProperty("email")
+    private String email;
+
     private LocalDateTime createdDate;
     private LocalDateTime updateDate;
 }
