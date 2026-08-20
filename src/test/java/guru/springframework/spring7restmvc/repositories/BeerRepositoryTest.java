@@ -34,7 +34,7 @@ class BeerRepositoryTest {
 
         assertThrows(ConstraintViolationException.class, () -> {
 
-            Beer savedBeer = beerRepository.save(Beer.builder()
+            beerRepository.save(Beer.builder()
                     .beerName("My Beer".repeat(100))
                     .beerStyle(BeerStyle.PALE_ALE)
                     .upc("234324234234")
