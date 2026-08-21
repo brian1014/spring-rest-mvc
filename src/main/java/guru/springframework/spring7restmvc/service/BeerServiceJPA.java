@@ -49,12 +49,8 @@ public class BeerServiceJPA implements BeerService {
     }
 
     public PageRequest buildPageRequest(Integer pageNumber, Integer pageSize) {
-        int queryPageNumber;
-
         if (pageNumber > 0) {
-            queryPageNumber = pageNumber - 1;
-        } else {
-            queryPageNumber = pageNumber;
+            pageNumber = pageNumber - 1;
         }
 
         if (pageSize > 1000) {
@@ -63,7 +59,7 @@ public class BeerServiceJPA implements BeerService {
 
         Sort sort = Sort.by(Sort.Order.asc("beerName"));
 
-        return PageRequest.of(queryPageNumber, pageSize, sort);
+        return PageRequest.of(pageNumber, pageSize, sort);
     }
 
     private Page<Beer> listBeersByNameAndStyle(String beerName, BeerStyle beerStyle, Pageable pageable) {
