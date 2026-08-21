@@ -29,7 +29,7 @@ public class Customer {
 
     private String name;
 
-    @Column(length = 255)
+    @Column
     private String email;
 
     @Version
