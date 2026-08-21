@@ -40,9 +40,11 @@ public class BeerOrderLine {
         return this.id == null;
     }
 
+    // Esta es la dueña de la relacion porque aqui va a estar la llave foranea
     @ManyToOne
     private BeerOrder beerOrder;
 
+    // Esta es la dueña de la relacion porque aqui va a estar la llave foranea
     @ManyToOne
     private Beer beer;
 

@@ -58,6 +58,13 @@ public class Beer {
     @OneToMany(mappedBy = "beer")
     private Set<BeerOrderLine> beerOrderLines;
 
+//    ESTA ES LA DUEÑA DE LA RELACION EN ManyToMany
+    @ManyToMany
+    @JoinTable(name = "beer_category",
+            joinColumns = @JoinColumn(name = "beer_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
+
     @CreationTimestamp
     private LocalDateTime createdDate;
 
