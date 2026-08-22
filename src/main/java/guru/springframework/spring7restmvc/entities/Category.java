@@ -1,14 +1,12 @@
 package guru.springframework.spring7restmvc.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.*;
 import org.hibernate.type.SqlTypes;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -17,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class Category {
 
     @Id
@@ -43,7 +42,8 @@ public class Category {
 //            joinColumns = @JoinColumn(name = "category_id"),
 //            inverseJoinColumns = @JoinColumn(name = "beer_id"))
     @ManyToMany(mappedBy = "categories")
-    private Set<Beer> beers;
+    @Builder.Default
+    private Set<Beer> beers = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
