@@ -48,10 +48,8 @@ public class Category {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Category)) return false;
+        if (!(o instanceof Category category)) return false;
         if (!super.equals(o)) return false;
-
-        Category category = (Category) o;
 
         return getDescription() != null ? getDescription().equals(category.getDescription()) : category.getDescription() == null;
     }

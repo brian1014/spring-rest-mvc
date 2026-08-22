@@ -2,7 +2,6 @@ package guru.springframework.spring7restmvc.repositories;
 
 import guru.springframework.spring7restmvc.bootstrap.BootstrapData;
 import guru.springframework.spring7restmvc.entities.Beer;
-import guru.springframework.spring7restmvc.entities.BeerOrder;
 import guru.springframework.spring7restmvc.model.BeerStyle;
 import guru.springframework.spring7restmvc.service.BeerCsvServiceImpl;
 import jakarta.validation.ConstraintViolationException;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
