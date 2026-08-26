@@ -29,7 +29,6 @@ import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -55,22 +54,19 @@ class BeerControllerTest {
 
     BeerServiceImpl beerServiceImpl;
 
-    public static final String USERNAME = "user1";
-    public static final String PASSWORD = "password";
-
     @BeforeEach
     void setUp() {
         beerServiceImpl = new BeerServiceImpl();
     }
 
-    public static final SecurityMockMvcRequestPostProcessors.JwtRequestPostProcessor jwtRequestPostProcessor = jwt().jwt(jwt -> {
+    public static final SecurityMockMvcRequestPostProcessors.JwtRequestPostProcessor jwtRequestPostProcessor = jwt().jwt(jwt ->
         jwt.claims(claims -> {
-                    claims.put("scope", "message.read");
+//                    claims.put("scope", "message.read");
                     claims.put("scope", "message.write");
                 })
                 .subject("oidc-client")
-                .notBefore(Instant.now().minusSeconds(5L));
-    });
+                .notBefore(Instant.now().minusSeconds(5L))
+    );
 
     @Test
     void testPatchBeer() throws Exception {
