@@ -29,6 +29,7 @@
     <properties>
         <java.version>25</java.version>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
+        <groovy.version>4.0.28</groovy.version>
     </properties>
     <dependencies>
         <!--   SPRING BOOT DEPENDENCIES     -->
@@ -110,6 +111,7 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>3.1.0</version>
         </dependency>
+
         <!--   FIN GENERAL DEPENDENCIES     -->
 
 
@@ -135,6 +137,20 @@
             <artifactId>spring-boot-starter-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.5.6</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/com.atlassian.oai/openapi-request-validator-restassured -->
+        <dependency>
+            <groupId>com.atlassian.oai</groupId>
+            <artifactId>openapi-request-validator-restassured</artifactId>
+            <version>3.0.0</version>
+            <scope>test</scope>
+        </dependency>
+
         <!--   DEPENDENCIES TEST CONTAINERS     -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -188,7 +204,7 @@
                 <version>1.5</version>
                 <configuration>
                     <apiDocsUrl>http://localhost:8081/v3/api-docs</apiDocsUrl>
-                    <outputFileName>oa3.yml</outputFileName>
+<!--                    <outputFileName>oa3.yml</outputFileName>-->
                 </configuration>
                 <executions>
                     <execution>
