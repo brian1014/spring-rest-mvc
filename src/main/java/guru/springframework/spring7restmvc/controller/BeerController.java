@@ -74,6 +74,7 @@ public class BeerController {
                                    @RequestParam(required = false) Boolean showInventory,
                                    @RequestParam(required = false, defaultValue = "0") Integer pageNumber,
                                    @RequestParam(required = false, defaultValue = "25") Integer pageSize) {
+        log.debug("List Beers - in Controller!!!");
         return this.beerService.listBeers(beerName, beerStyle, showInventory, pageNumber, pageSize);
     }
 
