@@ -18,8 +18,7 @@ public class CustomErrorController {
     ResponseEntity<List<Map<String, String>>> handleJPAValidations(TransactionSystemException exception) {
         ResponseEntity.BodyBuilder responseEntity = ResponseEntity.badRequest();
 
-        if (exception.getCause().getCause() instanceof ConstraintViolationException) {
-            ConstraintViolationException ve = (ConstraintViolationException) exception.getCause().getCause();
+        if (exception.getCause().getCause() instanceof ConstraintViolationException ve) {
 
             List<Map<String, String>> errors = ve.getConstraintViolations().stream()
                     .map(constraintViolation -> {
