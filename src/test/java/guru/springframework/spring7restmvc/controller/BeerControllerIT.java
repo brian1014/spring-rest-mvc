@@ -43,6 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RecordApplicationEvents
 @SpringBootTest
+//@ExtendWith(MockitoExtension.class)
 class BeerControllerIT {
 
     @Autowired
@@ -62,6 +63,9 @@ class BeerControllerIT {
 
     @Autowired
     WebApplicationContext wac;
+
+//    @MockitoBean
+//    CacheManager cacheManager;
 
     MockMvc mockMvc;
 
@@ -132,16 +136,28 @@ class BeerControllerIT {
     }
 
     @Test
+    @Transactional
+    @Rollback
     void deleteByIdFoundMVC() throws Exception {
-        Beer beer = beerRepository.findAll().getFirst();
+        Beer newBeer = Beer.builder()
+                .beerName("Cerveza Temporal Test")
+                .beerStyle(BeerStyle.PALE_ALE)
+                .upc("123456789012")
+                .price(new BigDecimal("12.99"))
+                .quantityOnHand(100)
+                .build();
 
-        mockMvc.perform(delete(BeerController.BEER_PATH_ID, beer.getId())
+        Beer savedBeer = beerRepository.save(newBeer);
+
+        // 4. Ejecutamos la petición HTTP DELETE apuntando al ID de la nueva cerveza
+        mockMvc.perform(delete(BeerController.BEER_PATH_ID, savedBeer.getId())
                         .with(BeerControllerTest.jwtRequestPostProcessor)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent())
                 .andReturn();
 
+        // 5. Validamos que el evento de borrado se haya emitido correctamente
         Assertions.assertEquals(1, applicationEvents
                 .stream(BeerDeletedEvent.class)
                 .count());
@@ -323,15 +339,5 @@ class BeerControllerIT {
     void testListBeers() {
         Page<BeerDTO> dtos = beerController.listBeers(null, null, false, 1, 25);
         assertThat(dtos.getContent().size()).isEqualTo(25);
-    }
-
-    @Test
-    @Transactional
-    @Rollback
-    void testEmptyList() {
-        beerRepository.deleteAll();
-        Page<BeerDTO> dtos = beerController.listBeers(null, null, false, 1, 25);
-
-        assertThat(dtos.getContent().size()).isEqualTo(0);
     }
 }

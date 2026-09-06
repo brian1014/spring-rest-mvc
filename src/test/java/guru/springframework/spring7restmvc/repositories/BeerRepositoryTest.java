@@ -6,10 +6,14 @@ import guru.springframework.spring7restmvc.model.BeerStyle;
 import guru.springframework.spring7restmvc.service.BeerCsvServiceImpl;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.math.BigDecimal;
 
@@ -18,9 +22,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DataJpaTest
 @Import({BootstrapData.class, BeerCsvServiceImpl.class})
+@ExtendWith(MockitoExtension.class)
 class BeerRepositoryTest {
     @Autowired
     BeerRepository beerRepository;
+
+    @MockitoBean
+    CacheManager cacheManager;
 
     @Test
     void testGetBeerListByName() {
@@ -30,7 +38,7 @@ class BeerRepositoryTest {
     }
 
     @Test
-    void testSaveBeerNameTooLong() {
+    void    testSaveBeerNameTooLong() {
 
         assertThrows(ConstraintViolationException.class, () -> {
 
