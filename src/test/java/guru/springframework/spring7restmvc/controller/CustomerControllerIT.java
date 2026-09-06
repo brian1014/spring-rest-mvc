@@ -98,16 +98,6 @@ class CustomerControllerIT {
         assertThat(customer).isNotNull();
     }
 
-//    @Test
-//    @Transactional
-//    @Rollback
-//    void testListAllEmptyList() {
-//        customerRepository.deleteAll();
-//        List<CustomerDTO> dtos = customerController.listAllCustomers();
-//
-//        assertThat(dtos.size()).isEqualTo(0);
-//    }
-
     @Test
     void testListAll() {
         List<CustomerDTO> dtos = customerController.listAllCustomers();
