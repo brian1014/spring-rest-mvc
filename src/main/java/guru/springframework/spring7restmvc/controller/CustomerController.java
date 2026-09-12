@@ -1,7 +1,7 @@
 package guru.springframework.spring7restmvc.controller;
 
-import guru.springframework.spring7restmvc.model.CustomerDTO;
 import guru.springframework.spring7restmvc.service.CustomerService;
+import guru.springframework.spring7restmvcapi.model.CustomerDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

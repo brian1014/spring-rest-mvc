@@ -1,6 +1,6 @@
 package guru.springframework.spring7restmvc.service;
 
-import guru.springframework.spring7restmvc.model.CustomerDTO;
+import guru.springframework.spring7restmvcapi.model.CustomerDTO;
 
 import java.util.List;
 import java.util.Optional;

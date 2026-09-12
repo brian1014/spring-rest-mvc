@@ -2,8 +2,8 @@ package guru.springframework.spring7restmvc.repositories;
 
 import guru.springframework.spring7restmvc.bootstrap.BootstrapData;
 import guru.springframework.spring7restmvc.entities.Beer;
-import guru.springframework.spring7restmvc.model.BeerStyle;
 import guru.springframework.spring7restmvc.service.BeerCsvServiceImpl;
+import guru.springframework.spring7restmvcapi.model.BeerStyle;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

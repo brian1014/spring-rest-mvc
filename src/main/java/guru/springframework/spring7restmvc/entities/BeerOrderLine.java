@@ -1,6 +1,6 @@
 package guru.springframework.spring7restmvc.entities;
 
-import guru.springframework.spring7restmvc.model.BeerOrderLineStatus;
+import guru.springframework.spring7restmvcapi.model.BeerOrderLineStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.*;

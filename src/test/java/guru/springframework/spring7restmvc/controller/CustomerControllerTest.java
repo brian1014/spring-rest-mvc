@@ -1,9 +1,9 @@
 package guru.springframework.spring7restmvc.controller;
 
 import guru.springframework.spring7restmvc.config.SpringSecurityConfig;
-import guru.springframework.spring7restmvc.model.CustomerDTO;
 import guru.springframework.spring7restmvc.service.CustomerService;
 import guru.springframework.spring7restmvc.service.CustomerServiceImpl;
+import guru.springframework.spring7restmvcapi.model.CustomerDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

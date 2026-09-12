@@ -6,14 +6,16 @@ import guru.springframework.spring7restmvc.entities.BeerOrderLine;
 import guru.springframework.spring7restmvc.entities.BeerOrderShipment;
 import guru.springframework.spring7restmvc.entities.Customer;
 import guru.springframework.spring7restmvc.mappers.BeerOrderMapper;
-import guru.springframework.spring7restmvc.model.BeerOrderCreateDTO;
-import guru.springframework.spring7restmvc.model.BeerOrderDTO;
-import guru.springframework.spring7restmvc.model.BeerOrderUpdateDTO;
 import guru.springframework.spring7restmvc.repositories.BeerOrderRepository;
 import guru.springframework.spring7restmvc.repositories.BeerRepository;
 import guru.springframework.spring7restmvc.repositories.CustomerRepository;
+import guru.springframework.spring7restmvcapi.events.OrderPlacedEvent;
+import guru.springframework.spring7restmvcapi.model.BeerOrderCreateDTO;
+import guru.springframework.spring7restmvcapi.model.BeerOrderDTO;
+import guru.springframework.spring7restmvcapi.model.BeerOrderUpdateDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,7 @@ public class BeerOrderServiceJPA implements BeerOrderService {
     private final BeerOrderMapper beerOrderMapper;
     private final CustomerRepository customerRepository;
     private final BeerRepository beerRepository;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Override
     public void deleteOrder(UUID beerOrderId) {
@@ -74,7 +77,15 @@ public class BeerOrderServiceJPA implements BeerOrderService {
             }
         }
 
-        return beerOrderMapper.beerOrderToBeerOrderDto(beerOrderRepository.save(order));
+        BeerOrderDTO dto = beerOrderMapper.beerOrderToBeerOrderDto(beerOrderRepository.save(order));
+
+        if (beerOrderUpdateDTO.getPaymentAmount() != null) {
+            applicationEventPublisher.publishEvent(OrderPlacedEvent.builder()
+                            .beerOrderDTO(dto)
+                    .build());
+        }
+
+        return dto;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package guru.springframework.spring7restmvc.controller;
 
-import guru.springframework.spring7restmvc.model.BeerDTO;
-import guru.springframework.spring7restmvc.model.BeerStyle;
 import guru.springframework.spring7restmvc.service.BeerService;
+import guru.springframework.spring7restmvcapi.model.BeerDTO;
+import guru.springframework.spring7restmvcapi.model.BeerStyle;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -70,7 +70,7 @@ public class BeerController {
 
     @GetMapping(BEER_PATH)
     public Page<BeerDTO> listBeers(@RequestParam(required = false) String beerName,
-                                   @RequestParam(required = false)  BeerStyle beerStyle,
+                                   @RequestParam(required = false) BeerStyle beerStyle,
                                    @RequestParam(required = false) Boolean showInventory,
                                    @RequestParam(required = false, defaultValue = "0") Integer pageNumber,
                                    @RequestParam(required = false, defaultValue = "25") Integer pageSize) {

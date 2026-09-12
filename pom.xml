@@ -152,9 +152,24 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>3.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-kafka</artifactId>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.kafka</groupId>-->
+<!--            <artifactId>spring-kafka</artifactId>-->
+<!--        </dependency>-->
 
         <!--   FIN GENERAL DEPENDENCIES     -->
 
+        <!--   CUSTOM DEPENDENCIES     -->
+        <dependency>
+            <groupId>guru.springframework</groupId>
+            <artifactId>spring-7-rest-mvc-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--   CUSTOM DEPENDENCIES     -->
 
 
         <!--   TEST DEPENDENCIES     -->
@@ -194,6 +209,12 @@
             <groupId>com.atlassian.oai</groupId>
             <artifactId>openapi-request-validator-restassured</artifactId>
             <version>3.0.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-kafka-test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-kafka-test</artifactId>
             <scope>test</scope>
         </dependency>
 

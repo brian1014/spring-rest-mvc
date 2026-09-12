@@ -1,5 +1,6 @@
 package guru.springframework.spring7restmvc.controller;
 
+import guru.springframework.spring7restmvcapi.model.*;
 import tools.jackson.databind.ObjectMapper;
 import guru.springframework.spring7restmvc.model.*;
 import guru.springframework.spring7restmvc.repositories.BeerOrderRepository;
