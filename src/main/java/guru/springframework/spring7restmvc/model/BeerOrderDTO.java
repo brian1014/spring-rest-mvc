@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
@@ -22,6 +23,8 @@ public class BeerOrderDTO {
     private String customerRef;
 
     private CustomerDTO customer;
+
+    private BigDecimal paymentAmount;
 
     private Set<BeerOrderLineDTO> beerOrderLines;
 
